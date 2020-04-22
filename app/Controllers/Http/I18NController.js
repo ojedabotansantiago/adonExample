@@ -3,33 +3,42 @@
 const Antl = use("Antl");
 const Formats = use("Antl/Formats");
 
-const jsEn = require("../../../resources/locales/en/en.json");
-const jsEs = require("../../../resources/locales/es/es.json");
+const enLanguageJson = require("../../../resources/locales/en/enLanguage.json");
+const esLanguageJson = require("../../../resources/locales/es/esLanguage.json");
 const availableLanguages = {
-  es: jsEs,
-  en: jsEn,
+  es: esLanguageJson,
+  en: enLanguageJson,
 };
 
 class I18NController {
   async getLanguage({ params, request, response }) {
-    //let message = Antl.formatMessage("messages.greeting");
-    //let message = Antl.formatMessage('messages.test2');
-    response.type("application/json");
-    //const language = request.qs.lang;
     const language = params.lang;
-    //let uax2 = Antl.formatRelative('messages');
-    
-    response.json(this.getLanguageByParams(language));
-  }
-  async getText({ params, request, response }) {
-    //let message = Antl.formatMessage("messages.greeting");
-    //let message = Antl.formatMessage('messages.test2');
-    response.type("application/json");
-    const {lang, txt} = params;
-    let message = Antl.formatMessage("messages.greeting");
-    
+    if (!params.lang) {
+      response.status(400).send("Language Bad Request missing param language");
+    }
+    const message = this.getLanguageByParams(language);
+    if (!message) {
+      response.status(204).send("Language ket or language not found");
+    }
     response.json(message);
   }
+
+  async getText({ params, request, response }) {
+    response.type("application/json");
+    const { langUsed, txtSearched } = params;
+    if (!langUsed || !txtSearched) {
+      response.status(400).send("Language Bad Request missing param language");
+    }
+    var search = `${langUsed}Language.${txtSearched}`;
+    try {
+      var message = Antl.forLocale(langUsed).formatMessage(search);
+    } catch (error) {
+      response.status(204).send("Language ket or language not found");
+    }
+
+    response.json(message);
+  }
+
   /**
    *
    * @param {string} selectedLanguage
