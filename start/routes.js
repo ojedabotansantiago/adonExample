@@ -19,3 +19,5 @@ const Route = use('Route');
 Route.on('/').render('welcome');
 
 Route.get('cars', 'CarController.index');
+Route.get('api/get/language/:lang', 'I18NController.getLanguage');
+Route.get('api/get/language/:lang/text/:txt', 'I18NController.getText');

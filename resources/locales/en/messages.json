@@ -1,0 +1,8 @@
+{
+  "greeting": "Hello {name}",
+  "total": "Cart total is {total, number, usd}",
+  "test2": "asd",
+  "test3": {
+    "test4": " some"
+  }
+}

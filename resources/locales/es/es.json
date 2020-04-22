@@ -1,0 +1,20 @@
+{
+  "greeting": "Hello!",
+  "key": "es",
+  "keyDeep": {
+      "inner": "value"
+  },
+  "keyNesting": "reuse",
+  "keyInterpolate": "replace this ",
+  "keyInterpolateUnescaped": "replace this",
+  "keyContext_male": "the male variant",
+  "keyContext_female": "the female variant",
+  "keyPluralSimple": "the singular",
+  "keyPluralSimple_plural": "the plural",
+  "keyPluralMultipleEgArabic_0": "the plural form 0",
+  "keyPluralMultipleEgArabic_1": "the plural form 1",
+  "keyPluralMultipleEgArabic_2": "the plural form 2",
+  "keyPluralMultipleEgArabic_3": "the plural form 3",
+  "keyPluralMultipleEgArabic_11": "the plural form 4",
+  "keyPluralMultipleEgArabic_100": "the plural form 5"
+}
